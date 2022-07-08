@@ -1,5 +1,5 @@
 import { Router } from "express";
-import isMutant from "../functions/isMutant.js";
+import { isMutant } from "../functions/isMutant";
 
 const router = new Router();
 
