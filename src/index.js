@@ -87,9 +87,65 @@ const fragDnaMatrixLeftRight = (fragDnaMatrixHor) => {
   const matrizFilter = matrizDiag.filter((element) => {
     return element.length >= 4;
   });
-  console.log(matrizDiag);
+  // console.log(matrizDiag);
   return matrizFilter;
 }
 console.log("\nSecuencias de ADN LeftRight", fragDnaMatrixLeftRight(fragDnaMatrixHor));
 
+const fragDnaMatrixRightLeft = (fragDnaMatrixHor) => {
+  let matrizDiag = [],
+    rows = fragDnaMatrixHor.length,
+    cols = fragDnaMatrixHor[0].length;
 
+  const reverse = fragDnaMatrixHor.map((sequence) => {
+    return sequence.reverse();
+  });
+
+  for (let index = 0; index < cols + rows - 1; index++) {
+    let rowJ = index, colJ = 0, str = "";
+
+    while (rowJ >= 0 && colJ < cols) {
+      if (rowJ < rows) {
+        str += reverse[rowJ][colJ];
+        // console.log(str);
+      }
+      rowJ--;
+      colJ++;
+    }
+    matrizDiag.push(str);
+  }
+
+  const matrizFilter = matrizDiag.filter((element) => {
+    return element.length >= 4;
+  });
+  // console.log(matrizDiag);
+  return matrizFilter;
+}
+// console.log("\nSecuencias de ADN Right To Left", 
+const result = fragDnaMatrixRightLeft(fragDnaMatrixHor);
+console.log("Secuencias de ADN RightLeft", result);
+// );
+
+const validateDNA = (fragDnaMatrix) => {
+  let sequenceEqualsFound = 0, matrix = [];
+
+  fragDnaMatrix.forEach((sequence) => {
+    let cont = 0, value = 0;
+    while (cont <= sequence.length && sequence.charAt(cont) != '') {
+      if (sequence.charAt(cont + 1) != '') {
+        if (sequence.charAt(cont) == sequence.charAt(cont + 1)) {
+          console.log(sequence.charAt(cont), " == ", sequence.charAt(cont + 1));
+          value++;
+        } else {
+          console.log(sequence.charAt(cont), " != ", sequence.charAt(cont + 1));
+        }
+      }
+      cont++;
+    }
+    matrix.push(value);
+    console.log("\n");
+  });
+  return matrix;
+}
+
+console.log("\nValidar ADN: ", validateDNA(result));
