@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { isMutant } from "../functions/isMutant";
+import { isMutant } from "../functions";
 
-const router = new Router();
+const router = Router();
 
 // router.get('/', /* function */);
 router.post('/is-mutant', isMutant);

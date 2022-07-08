@@ -1,5 +1,5 @@
 
-const isMutant = (request, response) => {
+export const isMutant = (request, response) => {
   try {
     const body = request.body;
 
@@ -8,5 +8,3 @@ const isMutant = (request, response) => {
     console.log(error.message);
   }
 }
-
-export { isMutant };
