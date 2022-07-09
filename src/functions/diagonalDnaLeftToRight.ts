@@ -1,4 +1,4 @@
-export const diagonalDna = (fragDnaSeq) => {
+export const diagonalDnaLeftToRight = (fragDnaSeq) => {
   let diagDnaSeq = [], rows = fragDnaSeq.length, cols = fragDnaSeq[0].length;
 
   for (let index = 0; index < (rows + cols - 1); index++) {
@@ -13,11 +13,10 @@ export const diagonalDna = (fragDnaSeq) => {
     }
     diagDnaSeq.push(dnaValue);
   }
-  return diagDnaSeq;
-  // console.log("Diag DNA Left to Right: ");
 
-  // fragDnaSeq.forEach((sequence) => {
-  //   console.log(sequence);
-  // });
-  // return "Hola Mundo :D";
+  const matrizFilter = diagDnaSeq.filter((element) => {
+    return element.length >= 4;
+  });
+
+  return matrizFilter;
 }

@@ -1,7 +1,8 @@
 import {
   fragmentedDnaSequences,
   verticalizeDnaSequences,
-  diagonalDna,
+  diagonalDnaLeftToRight,
+  diagonalDnaRightToLeft,
 } from "./";
 
 export const isMutant = (request, response) => {
@@ -11,9 +12,13 @@ export const isMutant = (request, response) => {
 
     const fragDnaSeqRev = verticalizeDnaSequences(fragDnaSeq);
     console.log("Frag DNA Seq Rev: ", fragDnaSeqRev);
-
-    const diagDnaLR = diagonalDna(fragDnaSeq);
+    /* ---------------------------------------------------------------- */
+    const diagDnaLR = diagonalDnaLeftToRight(fragDnaSeq);
     console.log("Diag DNA Left to Right: ", diagDnaLR);
+
+    const diagDnaRL = diagonalDnaRightToLeft(fragDnaSeq);
+    console.log("Diag DNA Right to Left: ", diagDnaRL);
+    /* ---------------------------------------------------------------- */
 
     response.send({
       "Datos de Entrada": request.body,
