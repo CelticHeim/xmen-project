@@ -5,14 +5,12 @@ export const diagonalDnaRightToLeft = (fragDnaSeq) => {
     return sequence.reverse();
   });
 
-  console.log("Reverse: ", reverse);
-
   for (let index = 0; index < (rows + cols - 1); index++) {
-    let rows_j = index, cols_j = 0, dnaValue = "";
+    let rows_j = index, cols_j = 0, dnaValue = [];
 
     while (rows_j >= 0 && cols_j < cols) {
       if (rows_j < rows) {
-        dnaValue += reverse[rows_j][cols_j];
+        dnaValue.push(reverse[rows_j][cols_j]);
       }
       rows_j--;
       cols_j++;
@@ -20,9 +18,8 @@ export const diagonalDnaRightToLeft = (fragDnaSeq) => {
     diagDnaSeq.push(dnaValue);
   }
 
-  const matrizFilter = diagDnaSeq.filter((element) => {
+  const filterDiagDnaSeq = diagDnaSeq.filter((element) => {
     return element.length >= 4;
   });
-
-  return matrizFilter;
+  return filterDiagDnaSeq;
 }
