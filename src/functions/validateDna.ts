@@ -22,7 +22,7 @@ export const validateDna = (sequencesMatrix) => {
         }
         valPos++;
       }
-      // console.log("Numero de coincidencias:", numMatch, "\nNumero de equivalencias:", numValEquals);
+      console.log("Numero de coincidencias:", numMatch, "\nNumero de equivalencias:", numValEquals);
     });
   });
 
@@ -32,5 +32,5 @@ export const validateDna = (sequencesMatrix) => {
     message = "No se encontraron señales de que el individuo sea un mutante";
   }
 
-  return message;
+  return { message: message, numMatch: numMatch };
 }

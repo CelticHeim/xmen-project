@@ -26,7 +26,8 @@ export const isMutant = (request, response) => {
 
     response.send({
       "Datos de Entrada": request.body,
-      "¿Es Mutante?": dnaValidated,
+      "¿Es Mutante?": dnaValidated.message,
+      "Numero de patrones encontrados: ": dnaValidated.numMatch,
     });
   } catch (error) {
     console.log(error.message);
