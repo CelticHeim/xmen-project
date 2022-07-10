@@ -23,10 +23,10 @@ export const isMutant = (request, response) => {
     ]
 
     const dnaValidated = validateDna(sequencesMatrix);
-    console.log(dnaValidated);
 
     response.send({
       "Datos de Entrada": request.body,
+      "¿Es Mutante?": dnaValidated,
     });
   } catch (error) {
     console.log(error.message);

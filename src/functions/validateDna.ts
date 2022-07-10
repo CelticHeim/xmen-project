@@ -1,11 +1,10 @@
 export const validateDna = (sequencesMatrix) => {
-  let numMatch = 0;
+  let numMatch = 0, message = "";
 
   sequencesMatrix.forEach((sequences) => { // 4 Matrices Para Analizar
     sequences.forEach((sequence) => {
       let numValEquals = 0, valPos = 0;
-      console.log("\nCantidad de valores en la secuencia:", sequence.length);
-
+      // console.log("\nCantidad de valores en la secuencia:", sequence.length);
       while (valPos <= sequence.length && sequence[valPos + 1] != '') {
         if (sequence[valPos + 1]) {
           if (sequence[valPos] == sequence[valPos + 1]) {
@@ -23,8 +22,15 @@ export const validateDna = (sequencesMatrix) => {
         }
         valPos++;
       }
-      console.log("Numero de coincidencias:", numMatch, "\nNumero de equivalencias:", numValEquals);
+      // console.log("Numero de coincidencias:", numMatch, "\nNumero de equivalencias:", numValEquals);
     });
   });
-  return numMatch;
+
+  if (numMatch >= 3) {
+    message = "Los datos de ADN indican que el individuo es un mutante";
+  } else {
+    message = "No se encontraron señales de que el individuo sea un mutante";
+  }
+
+  return message;
 }
