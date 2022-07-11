@@ -8,10 +8,10 @@ export const validateDna = (sequencesMatrix) => {
       while (valPos <= sequence.length && sequence[valPos + 1] != '') {
         if (sequence[valPos + 1]) {
           if (sequence[valPos] == sequence[valPos + 1]) {
-            console.log(sequence[valPos], "==", sequence[valPos + 1]);
+            // console.log(sequence[valPos], "==", sequence[valPos + 1]);
             numValEquals++;
           } else {
-            console.log(sequence[valPos], "!=", sequence[valPos + 1]);
+            // console.log(sequence[valPos], "!=", sequence[valPos + 1]);
             numValEquals = 0;
           }
 
@@ -22,7 +22,7 @@ export const validateDna = (sequencesMatrix) => {
         }
         valPos++;
       }
-      console.log("Numero de coincidencias:", numMatch, "\nNumero de equivalencias:", numValEquals);
+      // console.log("Numero de coincidencias:", numMatch, "\nNumero de equivalencias:", numValEquals);
     });
   });
 

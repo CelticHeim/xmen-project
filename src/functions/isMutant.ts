@@ -1,3 +1,4 @@
+import { IsMutantSchema } from "../lib";
 import {
   fragmentedDnaSequences,
   verticalizeDnaSequences,
@@ -6,9 +7,11 @@ import {
   validateDna,
 } from "./";
 
-export const isMutant = (request, response) => {
+export function isMutant(request, response) {
   try {
-    const fragDnaSeq = fragmentedDnaSequences(request.body.dna_sequences);
+    const dataBody = IsMutantSchema.parse(request.body);
+
+    const fragDnaSeq = fragmentedDnaSequences(dataBody.dna_sequences);
     const fragDnaSeqRev = verticalizeDnaSequences(fragDnaSeq);
     /* ---------------------------------------------------------------- */
     const diagDnaLR = diagonalDnaLeftToRight(fragDnaSeq);
@@ -25,11 +28,12 @@ export const isMutant = (request, response) => {
     const dnaValidated = validateDna(sequencesMatrix);
 
     response.send({
-      "Datos de Entrada": request.body,
+      "Datos de Entrada": dataBody,
       "¿Es Mutante?": dnaValidated.message,
       "Numero de patrones encontrados: ": dnaValidated.numMatch,
     });
   } catch (error) {
-    console.log(error.message);
+    // console.log(error);
+    response.status(500).send({ message: error });
   }
 }
