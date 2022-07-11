@@ -1,3 +1,6 @@
+import { AllowedValuesSchema } from "../lib";
+
+
 export const fragmentedDnaSequences = (dnaSequences) => {
   const arrayFragSeq = dnaSequences.map((element) => {
     let fragSeq = [];
@@ -7,5 +10,13 @@ export const fragmentedDnaSequences = (dnaSequences) => {
     }
     return fragSeq;
   });
+
+  // console.log(arrayFragSeq);
+  arrayFragSeq.forEach((sequence) => {
+    sequence.forEach((element) => {
+      AllowedValuesSchema.parse(element);
+    });
+  });
+
   return arrayFragSeq;
 }
