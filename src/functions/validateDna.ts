@@ -22,6 +22,10 @@ export const validateDna = (sequencesMatrix) => {
         }
         valPos++;
       }
+
+      if (numValEquals > 3) {
+        numMatch--;
+      }
       // console.log("Numero de coincidencias:", numMatch, "\nNumero de equivalencias:", numValEquals);
     });
   });
