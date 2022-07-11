@@ -3,29 +3,45 @@ export const validateDna = (sequencesMatrix) => {
 
   sequencesMatrix.forEach((sequences) => { // 4 Matrices Para Analizar
     sequences.forEach((sequence) => {
-      let numValEquals = 0, valPos = 0;
-      // console.log("\nCantidad de valores en la secuencia:", sequence.length);
-      while (valPos <= sequence.length && sequence[valPos + 1] != '') {
-        if (sequence[valPos + 1]) {
-          if (sequence[valPos] == sequence[valPos + 1]) {
-            // console.log(sequence[valPos], "==", sequence[valPos + 1]);
-            numValEquals++;
-          } else {
-            // console.log(sequence[valPos], "!=", sequence[valPos + 1]);
-            numValEquals = 0;
-          }
+      console.log("Secuencias Actual:", sequence);
+      let nextElement = 1, pairLetter = 0;
 
-          if (numValEquals == 3) {
+      sequence.forEach((element, index) => {
+        if (element == sequence[nextElement]) {
+          pairLetter++;
+          console.log(element, "==", sequence[index + 1], " PL:", pairLetter);
+        } else {
+          if (pairLetter == 3) {
             numMatch++;
+            console.log("Cadena de 4 elementos identicos sucesivos encontrada")
           }
-          // console.log("Numero de equivalencias:", numValEquals);
+          pairLetter = 0;
+          console.log(element, "!=", sequence[index + 1], " PL:", pairLetter);
         }
-        valPos++;
-      }
+        nextElement++;
+      });
+      console.log("Numero de coincidencias: ", numMatch);
 
-      if (numValEquals > 3) {
-        numMatch--;
-      }
+      // console.log("\nCantidad de valores en la secuencia:", sequence.length);
+      // while (valPos <= sequence.length && sequence[valPos + 1] != '') {
+      //   if (sequence[valPos + 1]) {
+      //     if (sequence[valPos] == sequence[valPos + 1]) {
+      //       console.log(sequence[valPos], "==", sequence[valPos + 1]);
+      //       numValEquals++;
+      //     } else {
+      //       console.log(sequence[valPos], "!=", sequence[valPos + 1]);
+      //       numValEquals = 0;
+      //     }
+
+      //     if (numValEquals == 3) {
+      //       numMatch++;
+      //     } else if (numValEquals > 3) {
+      //       numMatch--;
+      //     }
+      //     // console.log("Numero de equivalencias:", numValEquals);
+      //   }
+      //   valPos++;
+      // }
       // console.log("Numero de coincidencias:", numMatch, "\nNumero de equivalencias:", numValEquals);
     });
   });
@@ -35,6 +51,5 @@ export const validateDna = (sequencesMatrix) => {
   } else {
     message = "No se encontraron señales de que el individuo sea un mutante";
   }
-
   return { message: message, numMatch: numMatch };
 }
