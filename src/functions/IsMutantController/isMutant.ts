@@ -1,5 +1,4 @@
 import { IsMutantSchema } from "../../lib";
-import jwt from "jsonwebtoken";
 
 import { fragmentedDnaSequences } from "./fragmentedDnaSequences";
 import { verticalizeDnaSequences } from "./verticalizeDnaSequences";
@@ -9,8 +8,6 @@ import { validateDna } from "./validateDna";
 
 export function isMutant(request, response) {
   try {
-    // jwt.sign({}, process.env.SECRET_TOKEN) || "test";
-
     const dataBody = IsMutantSchema.parse(request.body);
 
     const fragDnaSeq = fragmentedDnaSequences(dataBody.dna_sequences);
