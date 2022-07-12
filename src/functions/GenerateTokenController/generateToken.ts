@@ -10,12 +10,10 @@ export function generateToken(request, response) {
 
     const accessToken = jwt.sign(user, process.env.SECRET_TOKEN, /* { expiresIn: "5m" } */);
 
-    response.status(200)
-      // .header({ "authorization": accessToken })
-      .send({
-        message: "Token Generado",
-        token: accessToken,
-      })
+    response.status(200).send({
+      message: "Token Generado",
+      token: accessToken,
+    })
   } catch (error) {
     response.status(500).send({ message: error })
   }

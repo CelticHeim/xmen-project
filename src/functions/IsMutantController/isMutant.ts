@@ -26,7 +26,7 @@ export function isMutant(request, response) {
 
     const dnaValidated = validateDna(sequencesMatrix);
 
-    response.send({
+    response.status(200).send({
       "Datos de Entrada": dataBody.dna_sequences,
       "¿Es Mutante?": dnaValidated.message,
       "Numero de patrones encontrados: ": dnaValidated.numMatch,
