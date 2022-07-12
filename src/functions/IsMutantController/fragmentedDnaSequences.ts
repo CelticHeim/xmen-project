@@ -1,5 +1,4 @@
-import { AllowedValuesSchema } from "../lib";
-
+import { AllowedValuesSchema } from "../../lib";
 
 export const fragmentedDnaSequences = (dnaSequences) => {
   const arrayFragSeq = dnaSequences.map((element) => {
