@@ -5,12 +5,16 @@ export function validateToken(request, response, next) {
     const accessToken = request.headers["authorization"];
 
     if (!accessToken) {
-      response.status(401).send("Acceso Denegado, debe generar un token");
+      response.status(401).send({
+        message: "Acceso Denegado, debe generar un token"
+      });
     }
 
     jwt.verify(accessToken, process.env.SECRET_TOKEN, (error, user) => {
       if (error) {
-        response.status(401).send("Acceso Denegado, el token es incorrecto");
+        response.status(401).send({
+          message: "Acceso Denegado, el token es incorrecto"
+        });
       } else {
         next();
       }
