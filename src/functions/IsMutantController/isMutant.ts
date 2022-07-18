@@ -27,12 +27,10 @@ export async function isMutant(request, response) {
 
     const dnaValidated = validateDna(sequencesMatrix);
 
-    const newResult = await Result.create({
+    await Result.create({
       input_data: dataBody.dna_sequences,
       result: dnaValidated.result,
     });
-
-    console.log("Query DB", newResult);
 
     response.status(200).send({
       "Datos de Entrada": dataBody.dna_sequences,

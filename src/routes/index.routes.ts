@@ -3,13 +3,12 @@ import { listAvaibleRoutes, generateToken, validateToken, isMutant, results } fr
 
 const router = Router();
 
-// router.get('/', /* function */);
 router.get('/', listAvaibleRoutes);
 
 router.post('/generate-token', generateToken);
 
 router.post('/is-mutant', validateToken, isMutant);
 
-router.get('/results', results);
+router.get('/results', validateToken, results);
 
 export default router;
