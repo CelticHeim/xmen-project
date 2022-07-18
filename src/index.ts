@@ -4,7 +4,7 @@ dotenv.config();
 import { sequelize } from './database/database';
 import { app } from "./app";
 
-import "../src/models/ResultModel";
+import "./models/Result";
 
 async function main() {
   try {
