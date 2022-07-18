@@ -1,4 +1,5 @@
 import { IsMutantSchema } from "../../lib";
+import { Result } from "../../models/Result";
 
 import { fragmentedDnaSequences } from "./fragmentedDnaSequences";
 import { verticalizeDnaSequences } from "./verticalizeDnaSequences";
@@ -6,7 +7,7 @@ import { diagonalDnaLeftToRight } from "./diagonalDnaLeftToRight";
 import { diagonalDnaRightToLeft } from "./diagonalDnaRightToLeft";
 import { validateDna } from "./validateDna";
 
-export function isMutant(request, response) {
+export async function isMutant(request, response) {
   try {
     const dataBody = IsMutantSchema.parse(request.body);
 
@@ -25,6 +26,11 @@ export function isMutant(request, response) {
     ]
 
     const dnaValidated = validateDna(sequencesMatrix);
+
+    await Result.create({
+      input_data: dataBody.dna_sequences,
+      result: dnaValidated.result,
+    });
 
     response.status(200).send({
       "Datos de Entrada": dataBody.dna_sequences,
