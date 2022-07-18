@@ -4,16 +4,20 @@ dotenv.config();
 import { sequelize } from './database/database';
 import { app } from "./app";
 
+import "../src/models/ResultModel";
+
 async function main() {
   try {
     await sequelize.authenticate();
-    console.log("Connection has been established successfully");
+    console.log("\nConnection has been established successfully\n");
+
+    await sequelize.sync({ force: false });
 
     app.listen(3000, function () {
-      console.log("Server On Port:", 3000);
+      console.log("\nServer On Port:", 3000);
     });
   } catch (error) {
-    console.log("Unable to connect the database:", error);
+    console.log("\nUnable to connect the database:", error);
   }
 }
 

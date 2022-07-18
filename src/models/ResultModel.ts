@@ -1,19 +1,18 @@
-import { Model, Optional } from 'sequelize';
+import { DataTypes } from 'sequelize';
+import { sequelize } from '../database/database';
 
-// We don't recommend doing this. Read on for the new way of declaring Model typings.
-
-type UserAttributes = {
-  id: number,
-  name: string,
-  // other attributes...
-};
-
-// we're telling the Model that 'id' is optional
-// when creating an instance of the model (such as using Model.create()).
-type UserCreationAttributes = Optional<UserAttributes, 'id'>;
-
-class User extends Model<UserAttributes, UserCreationAttributes> {
-  declare id: number;
-  declare string: number;
-  // other attributes...
-}
+export const Result = sequelize.define("results", {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  input_data: {
+    type: DataTypes.JSON,
+  },
+  result: {
+    type: DataTypes.STRING,
+  }
+}, {
+  timestamps: false,
+});
